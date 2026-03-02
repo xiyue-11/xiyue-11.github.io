@@ -1,0 +1,24 @@
+{{- $dir := .Get "dir" -}}
+{{- if not $dir }}
+  <p>未指定图片目录。</p>
+{{- else }}
+  {{- $path := printf "static/%s" $dir -}}
+  {{- $files := readDir $path -}}
+  {{- if not $files }}
+    <p>当前目录下还没有图片文件：{{ $dir }}</p>
+  {{- else }}
+    <div class="photo-gallery js-lightbox">
+      {{- range $files }}
+        {{- if not .IsDir }}
+          {{- $src := printf "/%s/%s" $dir .Name -}}
+          <figure class="photo-gallery-item">
+            <a href="{{ $src }}" class="photo-gallery-link js-lightbox" data-src="{{ $src }}">
+              <img src="{{ $src }}" loading="lazy" alt="">
+            </a>
+          </figure>
+        {{- end }}
+      {{- end }}
+    </div>
+  {{- end }}
+{{- end }}
+

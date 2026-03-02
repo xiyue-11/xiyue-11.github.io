@@ -1,0 +1,31 @@
+{{- $items := site.Data.allsky.index -}}
+{{- if not $items }}
+  <p class="allsky-empty">暂时没有任何全天相机记录。</p>
+{{- else }}
+  {{- $sorted := sort $items "date" "desc" -}}
+  {{- $limit := cond (.Get "limit") (.Get "limit") 30 -}}
+  {{- $rest := after 3 (first $limit $sorted) -}}
+  {{- if $rest }}
+  <section class="allsky-section allsky-gallery">
+    <h2 class="allsky-gallery-title">历史记录</h2>
+    <div class="allsky-gallery-grid js-lightbox">
+      {{- range $rest }}
+        <article class="allsky-gallery-item">
+          <a href="/{{ .image }}" class="allsky-link js-lightbox" data-src="/{{ .image }}">
+            <span class="allsky-gallery-frame">
+              <img src="/{{ .image }}" loading="lazy" alt="{{ .title }}">
+            </span>
+          </a>
+          <div class="allsky-gallery-meta">
+            <span class="allsky-date">{{ .date }}</span>
+            {{- with .type }}
+              <span class="allsky-type">{{ . }}</span>
+            {{- end }}
+          </div>
+        </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+{{- end }}
+

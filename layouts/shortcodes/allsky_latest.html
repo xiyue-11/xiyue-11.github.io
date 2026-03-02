@@ -1,0 +1,43 @@
+{{- $items := site.Data.allsky.index -}}
+{{- if not $items }}
+  <p class="allsky-empty">暂时没有任何全天相机记录，请稍后再来看看。</p>
+{{- else }}
+  {{- $sorted := sort $items "date" "desc" -}}
+  {{- $latest := first 3 $sorted -}}
+  <section class="allsky-section allsky-latest">
+    <div class="allsky-hero js-lightbox">
+      {{- with index $latest 0 }}
+      <a href="/{{ .image }}" class="allsky-hero-link js-lightbox" data-src="/{{ .image }}">
+        <span class="allsky-hero-frame">
+          <img src="/{{ .image }}" loading="eager" alt="{{ .title }}">
+        </span>
+      </a>
+      <div class="allsky-hero-caption">
+        <span class="allsky-hero-date">{{ .date }}</span>
+        {{- with .type }}
+          <span class="allsky-hero-type">{{ . }}</span>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+    {{- if gt (len $latest) 1 }}
+    <div class="allsky-recent-grid js-lightbox">
+      {{- range after 1 $latest }}
+      <article class="allsky-recent-card">
+        <a href="/{{ .image }}" class="allsky-link js-lightbox" data-src="/{{ .image }}">
+          <span class="allsky-recent-frame">
+            <img src="/{{ .image }}" loading="lazy" alt="{{ .title }}">
+          </span>
+        </a>
+        <div class="allsky-recent-meta">
+          <span class="allsky-date">{{ .date }}</span>
+          {{- with .type }}
+            <span class="allsky-type">{{ . }}</span>
+          {{- end }}
+        </div>
+      </article>
+      {{- end }}
+    </div>
+    {{- end }}
+  </section>
+{{- end }}

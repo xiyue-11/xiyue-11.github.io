@@ -1,0 +1,30 @@
+{{- /* Footer custom content area start */ -}}
+<script>
+(function() {
+  var wrap = document.querySelector('.typewriter-wrap');
+  if (!wrap) return;
+  var text = wrap.getAttribute('data-typewriter-text');
+  if (!text) return;
+  text = text.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  var output = wrap.querySelector('.typewriter-output');
+  var cursor = wrap.querySelector('.typewriter-cursor');
+  if (!output || !cursor) return;
+  var i = 0;
+  var speed = 80;
+  function type() {
+    if (i < text.length) {
+      output.textContent += text[i];
+      i++;
+      setTimeout(type, speed);
+    } else {
+      cursor.style.opacity = '0';
+    }
+  }
+  if (window.requestAnimationFrame) {
+    requestAnimationFrame(function() { setTimeout(type, 300); });
+  } else {
+    setTimeout(type, 300);
+  }
+})();
+</script>
+{{- /* Footer custom content area end */ -}}

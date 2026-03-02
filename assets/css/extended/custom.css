@@ -1,0 +1,561 @@
+/* ========== 二次元 × 天文 主题（青绿色系，无紫） ========== */
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+
+/* 亮色：青绿 / 浅色 */
+:root {
+  --radius: 14px;
+  --theme: rgb(240, 253, 250);
+  --entry: rgb(255, 255, 255);
+  --primary: rgb(19, 78, 74);
+  --secondary: rgb(45, 116, 110);
+  --tertiary: rgb(204, 251, 241);
+  --content: rgb(44, 82, 78);
+  --code-block-bg: rgb(19, 78, 74);
+  --code-bg: rgb(236, 254, 252);
+  --border: rgb(204, 251, 241);
+  --link: rgb(13, 148, 136);
+  --hover: rgb(20, 184, 166);
+}
+
+/* 暗色：深青 / 观星 */
+:root[data-theme="dark"] {
+  --theme: rgb(4, 47, 46);
+  --entry: rgb(13, 78, 74);
+  --primary: rgb(204, 251, 241);
+  --secondary: rgb(94, 234, 212);
+  --tertiary: rgb(20, 88, 82);
+  --content: rgb(204, 251, 241);
+  --code-block-bg: rgb(13, 78, 74);
+  --code-bg: rgb(19, 98, 92);
+  --border: rgb(45, 116, 110);
+  --link: rgb(94, 234, 212);
+  --hover: rgb(153, 246, 228);
+}
+
+body {
+  font-family: "Noto Sans SC", "M PLUS Rounded 1c", system-ui, sans-serif;
+}
+
+.first-entry h1.entry-title,
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  font-family: "M PLUS Rounded 1c", "Noto Sans SC", system-ui, sans-serif;
+}
+
+a {
+  color: var(--link);
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--hover);
+}
+
+/* 主页打字机效果 */
+.typewriter-wrap {
+  min-height: 1.5em;
+}
+.typewriter-cursor {
+  display: inline-block;
+  animation: typewriter-blink 0.8s step-end infinite;
+  margin-left: 1px;
+}
+@keyframes typewriter-blink {
+  50% { opacity: 0; }
+}
+
+/* 主区域背景：极淡星空感（亮色） */
+main.first-entry,
+.main .first-entry {
+  position: relative;
+}
+body:not([data-theme="dark"]) main {
+  background: linear-gradient(180deg, rgba(240, 253, 250, 0.5) 0%, transparent 30%);
+}
+body:not([data-theme="dark"]) .first-entry .entry-content {
+  color: var(--content);
+}
+
+/* 暗色下主区域深空渐变 */
+[data-theme="dark"] main {
+  background: linear-gradient(180deg, rgba(6, 78, 76, 0.35) 0%, transparent 40%);
+}
+
+/* 首页简介卡片：圆角与轻微星空边框 */
+.first-entry .entry-header,
+.profile .profile_inner {
+  border-radius: var(--radius);
+}
+.profile .profile_inner {
+  box-shadow: 0 8px 32px rgba(13, 148, 136, 0.08);
+}
+[data-theme="dark"] .profile .profile_inner {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 全站背景图 + 模糊（所有页面），z-index 最低 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to bottom, rgba(240, 253, 250, 0.65), rgba(240, 253, 250, 0.35)),
+    var(--home-bg-image, linear-gradient(135deg, rgba(204, 251, 241, 0.3) 0%, transparent 50%));
+  background-size: cover, cover;
+  background-position: center, center;
+  filter: blur(20px);
+  transform: scale(1.06);
+  opacity: 0.82;
+}
+
+[data-theme="dark"] body::before {
+  background-image:
+    linear-gradient(to bottom, rgba(4, 47, 46, 0.7), rgba(6, 78, 76, 0.45)),
+    var(--home-bg-image, linear-gradient(135deg, rgba(13, 78, 74, 0.4) 0%, transparent 50%));
+  opacity: 0.88;
+  filter: blur(20px) brightness(0.5);
+}
+
+/* 极淡星空/点缀（青绿色），所有页面 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(13, 148, 136, 0.45), transparent),
+    radial-gradient(1.5px 1.5px at 60% 70%, rgba(20, 184, 166, 0.35), transparent),
+    radial-gradient(1px 1px at 80% 20%, rgba(94, 234, 212, 0.3), transparent),
+    radial-gradient(1px 1px at 40% 80%, rgba(45, 212, 191, 0.35), transparent);
+  background-size: 200% 200%, 180% 180%, 220% 220%, 190% 190%;
+  background-position: 0% 0%, 40% 60%, 80% 20%, 20% 80%;
+}
+body:not([data-theme="dark"])::after {
+  opacity: 0.22;
+  background-image:
+    radial-gradient(1.2px 1.2px at 20% 30%, rgba(13, 148, 136, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 60% 70%, rgba(20, 184, 166, 0.28), transparent);
+}
+
+/* 导航与卡片：统一圆角 */
+.entry-cover,
+.entry-content img,
+.list .list-group .list-group-item {
+  border-radius: var(--radius);
+}
+
+/* 首页按钮：青绿主题色 */
+.profile .button {
+  background: rgba(13, 148, 136, 0.12);
+  color: var(--link);
+  border-radius: var(--radius);
+}
+.profile .button:hover {
+  background: rgba(13, 148, 136, 0.22);
+  color: var(--hover);
+}
+[data-theme="dark"] .profile .button {
+  background: rgba(94, 234, 212, 0.12);
+}
+[data-theme="dark"] .profile .button:hover {
+  background: rgba(94, 234, 212, 0.22);
+}
+
+/* ========== 以下为原有组件样式 ========== */
+
+/* 通用布局微调 */
+
+main {
+  scroll-behavior: smooth;
+}
+
+/* 摄影图库布局 */
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+}
+
+.photo-gallery-item {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.photo-gallery-item a {
+  display: block;
+  line-height: 0;
+}
+
+.photo-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  vertical-align: middle;
+}
+
+.photo-gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  filter: brightness(1.05);
+}
+
+/* ========== 全天相机页：新布局 ========== */
+
+.allsky-empty {
+  color: var(--secondary);
+  margin: 2rem 0;
+}
+
+.allsky-section {
+  margin: 2rem 0;
+}
+
+/* 最新一张：大图主视觉，长方形且与原图比例一致 */
+.allsky-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.allsky-hero-link {
+  display: inline-block;
+  line-height: 0;
+}
+
+.allsky-hero-frame {
+  display: inline-block;
+  max-width: min(420px, 92vw);
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--code-block-bg);
+  border: 2px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.allsky-hero-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.allsky-hero-link:hover .allsky-hero-frame {
+  transform: scale(1.02);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.allsky-hero-caption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--secondary);
+}
+
+.allsky-hero-date {
+  margin-right: 0.5rem;
+}
+
+.allsky-hero-type {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(13, 148, 136, 0.2);
+  color: var(--link);
+}
+
+[data-theme="dark"] .allsky-hero-type {
+  background: rgba(94, 234, 212, 0.2);
+}
+
+/* 近期另外两张：并排长方形，与原图比例一致 */
+.allsky-recent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+}
+
+.allsky-recent-card {
+  text-align: center;
+}
+
+.allsky-recent-card .allsky-link {
+  display: block;
+  line-height: 0;
+}
+
+.allsky-recent-frame {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.allsky-recent-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.allsky-recent-card:hover .allsky-recent-frame {
+  transform: scale(1.03);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.allsky-recent-meta {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+.allsky-recent-meta .allsky-type {
+  margin-left: 0.35rem;
+}
+
+/* 历史记录区块标题 */
+.allsky-gallery-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* 历史记录：紧凑网格，长方形与原图比例一致 */
+.allsky-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.allsky-gallery-item {
+  text-align: center;
+}
+
+.allsky-gallery-item .allsky-link {
+  display: block;
+  line-height: 0;
+}
+
+.allsky-gallery-frame {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.allsky-gallery-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.allsky-gallery-item:hover .allsky-gallery-frame {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.allsky-gallery-meta {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--secondary);
+}
+
+.allsky-gallery-meta .allsky-date {
+  display: block;
+}
+
+.allsky-gallery-meta .allsky-type {
+  display: inline-block;
+  margin-top: 0.2rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  background: rgba(13, 148, 136, 0.15);
+  color: var(--link);
+}
+
+[data-theme="dark"] .allsky-gallery-meta .allsky-type {
+  background: rgba(94, 234, 212, 0.15);
+}
+
+/* 共用：日期、类型标签（列表内） */
+.allsky-date {
+  opacity: 0.85;
+}
+
+.allsky-type {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(13, 148, 136, 0.18);
+  color: var(--link);
+}
+
+.allsky-desc {
+  font-size: 0.84rem;
+  opacity: 0.8;
+  line-height: 1.45;
+}
+
+/* 全天相机页：延时视频播放器 */
+.allsky-video-wrap {
+  margin: 2rem 0;
+}
+.allsky-video {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--code-block-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+.allsky-video-caption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+
+/* 全天相机页：移动端 */
+@media (max-width: 640px) {
+  .allsky-hero-frame {
+    width: min(260px, 85vw);
+  }
+
+  .allsky-recent-grid {
+    grid-template-columns: 1fr;
+    max-width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .allsky-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+/* Lightbox 弹出层：过渡动画 + 点击空白关闭 */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  z-index: 9998;
+}
+
+.lightbox-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-overlay.is-closing {
+  opacity: 0;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: pointer;
+  transition: opacity 0.28s ease;
+}
+
+.lightbox-overlay.is-closing .lightbox-backdrop {
+  opacity: 0;
+}
+
+.lightbox-figure {
+  position: relative;
+  max-width: min(92vw, 1000px);
+  max-height: 88vh;
+  z-index: 9999;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: default;
+  transform: scale(0.92);
+  opacity: 0;
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+
+/* 只有点击图片本身不关，点击遮罩任意空白处关闭 */
+.lightbox-figure {
+  pointer-events: none;
+}
+
+.lightbox-figure img {
+  pointer-events: auto;
+}
+
+.lightbox-overlay.is-open.is-visible .lightbox-figure {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lightbox-overlay.is-closing .lightbox-figure {
+  transform: scale(0.96);
+  opacity: 0;
+}
+
+.lightbox-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #0a0a0a;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+/* 手机端微调 */
+
+@media (max-width: 640px) {
+  .photo-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.9rem;
+  }
+}
+

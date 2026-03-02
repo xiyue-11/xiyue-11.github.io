@@ -1,0 +1,68 @@
+baseURL = "https://xiyue-11.github.io/"
+languageCode = "zh-cn"
+title = "西月个人博客"
+paginate = 10
+theme = "PaperMod"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  author = "西月"
+  description = "读书笔记、游戏评价、摄影与全天相机观星记录"
+  defaultTheme = "auto"
+  showReadingTime = true
+  ShowBreadCrumbs = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+
+  [params.homeInfoParams]
+    Title = "欢迎来到西月的小站"
+    Content = "Do not go gentle into that good night"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/xiyue-11"
+
+  [[params.socialIcons]]
+    name = "bilibili"
+    url = "https://space.bilibili.com/293957884"
+
+[params.assets]
+  # 全站背景图（带模糊），所有页面都会显示。将图片放到 static/images/ 下并填此处路径。
+  homeBgImage = "/images/home-bg.png"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "主页"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "essays"
+    name = "随笔"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "photos"
+    name = "摄影"
+    url = "/photos/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "allsky"
+    name = "全天相机"
+    url = "/allsky/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 5

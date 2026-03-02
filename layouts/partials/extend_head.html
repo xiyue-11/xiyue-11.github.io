@@ -1,0 +1,6 @@
+{{- /* 主页背景图：在 config 中设置 params.assets.homeBgImage 后生效 */ -}}
+{{- with site.Params.assets.homeBgImage }}
+<style>
+  :root { --home-bg-image: url('{{ . }}'); }
+</style>
+{{- end }}

@@ -1,0 +1,16 @@
+{{- $src := .Get "src" | default "" -}}
+{{- $caption := .Get "caption" | default "延时视频" -}}
+{{- $title := .Get "title" | default "" -}}
+{{- if $src }}
+<div class="allsky-video-wrap">
+  <video controls preload="metadata" class="allsky-video" {{ with $title }}title="{{ . }}"{{ end }}>
+    <source src="{{ $src }}" type="video/mp4">
+    您的浏览器不支持 video 标签，可<a href="{{ $src }}">下载视频</a>观看。
+  </video>
+  {{- with $caption }}
+  <p class="allsky-video-caption">{{ . }}</p>
+  {{- end }}
+</div>
+{{- else }}
+<p>未指定视频 src。</p>
+{{- end }}
