@@ -15,4 +15,6 @@ draft = false
 
 ## 延时视频
 
+{{< allsky_video src="/allsky/2026/04/16/allsky-minitimelapse_ccd2_20260416_night_1776388796.mp4" caption="2026-04-16 夜间 · IndiAllSky 迷你延时" title="2026-04-16 夜间迷你延时" >}}
+
 {{< allsky_video src="/allsky/2026/02/24/allsky-timelapse_ccd2_20260224_night_1771974264.mp4" caption="2026-02-24 夜间 · IndiAllSky 延时" title="2026-02-24 夜间延时" >}}
